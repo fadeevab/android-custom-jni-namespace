@@ -18,4 +18,5 @@
 
 ## Test
 
-Launch roadtosystem from your device's desktop. You should see "No exception: access granted" in a case of success.
+Launch "roadtosystem" from application list of your device. You should see
+**Access granted** in a case of success.

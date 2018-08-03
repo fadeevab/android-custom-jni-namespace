@@ -10,11 +10,21 @@
 #define APPNAME "roadtosystem"
 #define LOGV(...) __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, __VA_ARGS__);
 
+static const char *getLibPath(void) {
+#ifndef __aarch64__
+  return "/system/lib/";
+#else
+  return "/system/lib64/";
+#endif
+}
+
 JNIEXPORT jint JNICALL Java_com_example_android_jniapi_RoadToSystem_linkSystemLib(
         JNIEnv *env, jobject obj) {
+  const char *lib_path = getLibPath();
+
   struct android_namespace_t *ns = android_create_namespace("trustme",
-                                                            "/system/lib64/",
-                                                            "/system/lib64/",
+                                                            lib_path,
+                                                            lib_path,
                                                             ANDROID_NAMESPACE_TYPE_SHARED |
                                                             ANDROID_NAMESPACE_TYPE_ISOLATED,
                                                             "/system/:/data/:/vendor/",
