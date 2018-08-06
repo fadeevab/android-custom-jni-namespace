@@ -22,13 +22,15 @@ JNIEXPORT jint JNICALL Java_com_example_android_jniapi_RoadToSystem_linkSystemLi
         JNIEnv *env, jobject obj) {
   const char *lib_path = getLibPath();
 
-  struct android_namespace_t *ns = android_create_namespace("trustme",
-                                                            lib_path,
-                                                            lib_path,
-                                                            ANDROID_NAMESPACE_TYPE_SHARED |
-                                                            ANDROID_NAMESPACE_TYPE_ISOLATED,
-                                                            "/system/:/data/:/vendor/",
-                                                            NULL);
+  struct android_namespace_t *ns = android_create_namespace(
+      "trustme",
+      lib_path,
+      lib_path,
+      ANDROID_NAMESPACE_TYPE_SHARED |
+      ANDROID_NAMESPACE_TYPE_ISOLATED,
+      "/system/:/data/:/vendor/",
+      NULL);
+
   const android_dlextinfo dlextinfo = {
     .flags = ANDROID_DLEXT_USE_NAMESPACE,
     .library_namespace = ns,
