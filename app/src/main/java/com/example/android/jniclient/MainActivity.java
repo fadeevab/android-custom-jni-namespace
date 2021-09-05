@@ -1,6 +1,6 @@
 package com.example.android.jniclient;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Toast;
 import android.widget.TextView;

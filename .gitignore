@@ -3,3 +3,4 @@ local.properties
 build/
 app/build/
 app/.externalNativeBuild/
+app/.cxx/

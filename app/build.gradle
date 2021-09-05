@@ -1,11 +1,11 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 23
+    compileSdkVersion 30
     defaultConfig {
         applicationId "com.example.android.jniclient"
         minSdkVersion 23
-        targetSdkVersion 23
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
     }
@@ -15,18 +15,29 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    flavorDimensions "version"
+    flavorDimensions 'version', 'api'
     productFlavors {
         arm8 {
+            dimension 'version'
             ndk {
                 abiFilters 'arm64-v8a', 'armeabi-v7a'
             }
-            minSdkVersion 23
-            targetSdkVersion 23
             applicationId 'com.example.android.jniclient'
             versionCode 1
             versionName "1.0"
-            dimension "version"
+        }
+        minApi23 {
+            dimension 'api'
+            minSdkVersion '23'
+        }
+        minApi30 {
+            dimension 'api'
+            minSdkVersion '30'
+            externalNativeBuild {
+                ndkBuild {
+                    cFlags '-DANDROID11'
+                }
+            }
         }
     }
     externalNativeBuild {
@@ -37,6 +48,6 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:appcompat-v7:23.0.1'
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'androidx.appcompat:appcompat:1.0.2'
 }
